@@ -51,7 +51,8 @@ def is_valid(input_filename, try_fix = True):
     try:
         subprocess.check_output(["ffmpeg", "-v", "error",
                                  "-i", input_filename,
-                                 "-f", "null", "-"])
+                                 "-f", "null", "-"],
+                                stderr=subprocess.DEVNULL)
         return True
     except subprocess.CalledProcessError:
         if try_fix:
